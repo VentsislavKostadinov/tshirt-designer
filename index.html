@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"/>
+    <title>t-shirt designer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"/>
+    <link href='./style/style.css' rel="stylesheet">
+    <link href="./style/desktop.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header class="header">
+    <div class="headerBox logo" style="cursor:pointer;"><span class="clickLogo"><b>Logo</b></span>
+    </div>
+    <div class="headerBox exit" style="cursor:pointer;">
+        <div class="exitText"><b>Exit</b></div>
+        <div class="exitImage"><span class="exitCross"></span></div>
+    </div>
+</header>
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="btn-group col-lg-2 col-md-12" role="group" aria-label="Basic example" id="editorButtons">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#colorModal"
+                    id="color"><i
+                    class="fas fa-palette"></i><br/></button>
+            <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" id="add"><i class="fas fa-plus"></i> / <i class="far fa-image"></i><br />Add</button> -->
+            <button class="btn btn-primary">
+                <label id="uploadFromPC"><i class="fas fa-images"></i> <input type="file" id="file-select"
+                                                                              name="file-select"
+                                                                              class="fileSelector" accept="image/jpeg">
+                </label>
+            </button>
+            <button class="btn btn-primary" id="addingText" data-bs-toggle="modal" data-bs-target="#editorTextModal"><i
+                    class="bi bi-file-earmark-font"></i></button>
+            <button type="button" class="btn btn-primary" id="rotate"><i class="fas fa-sync-alt"></i><br/></button>
+            <button type="button" class="btn btn-primary" id="delete"><i class="fas fa-trash"></i><br/></button>
+
+
+        </div>
+
+        <section id="editorImage" class="col-lg-8 col-md-6 col-sm-6">
+
+            <img class="img-fluid frontImage" id="frontImage" src="./img/crew_front.png" alt="">
+            <div id="preview"></div>
+            <!-- <canvas id="canvas" width="230" height="530" ></canvas> -->
+            <img class="img-fluid backImage" src="./img/crew_back.png" alt="" style="display: none;">
+
+        </section>
+
+
+        <footer class="col-lg-2 col-md-12">
+            <!-- <button type="button" class="btn btn-info footerBut" id="upload-button" onclick="openUpload()"> Upload Images </button> -->
+            <button type="button" class="btn btn-info footerBut" id="tshirt-add-to-cart">Add to basket</button>
+        </footer>
+
+    </div>
+</div>
+
+<!-- COLOR PICKER -->
+<div class="modal fade" id="colorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Choose a color</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="colorDrawer">
+                <!-- ADD COLORS HERE -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--EDITOR TEXT-->
+<div class="modal fade" id="editorTextModal" tabindex="-1" aria-labelledby="exampleModalLabelText" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabelText">Editor Text</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="editorTextDrawer">
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary" id="drawText"><i class="fas fa-plus"> Add Text</i>
+                    </button>
+                    <div id="fontColorPickerWrap"><br/> <br/>
+                        <h2 style="display: none;">Choose a color</h2><br/>
+                        <div id="fontColorPicker"></div>
+                        <br/>
+                        <!--FONT COLORS HERE-->
+
+                        <div id="fontStyle">
+                            <h2>Font style</h2>
+                            <select class="form-select" id="chooseFontStyle" aria-label="Default select example">
+                                <option selected>Normal</option>
+                                <option value="bold">Bold</option>
+                                <option value="italic">Italic</option>
+                            </select>
+                        </div>
+
+                        <!--FONT FAMILY-->
+
+                        <div id="fontFamily">
+                            <h2>Font Family</h2>
+                            <select class="form-select" id="chooseFontFamily" aria-label="Default select example">
+                                <option value="Montserrat" selected>Montserrat</option>
+                                <option value="Sans Serif">Sans Serif</option>
+                                <option value="Arial">Arial</option>
+                                <option value="Comic Sans MS">Comic Sans MS</option>
+                                <option value="Times New Roman">Times New Roman</option>
+                                <option value="Courier New">Courier New</option>
+                                <option value="Verdana">Verdana</option>
+                                <option value="Trebuchet MS">Trebuchet MS</option>
+                                <option value="Arial Black">Arial Black</option>
+                                <option value="Impact">Impact</option>
+                                <option value="Bookman">Bookman</option>
+                                <option value="Garamond">Garamond</option>
+                                <option value="Palatino">Palatino</option>
+                                <option value="Georgia">Georgia</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="spinner-grow" role="status" style="display: none">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/konva@8.1.1/konva.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/WangYuLue/image-conversion/build/conversion.js"></script>
+    <script src="./js/app2.js"></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+@media (min-width: 992px) {
+  header {
+    height: 10vh;
+  }
+  .clickLogo {
+    width: 10vw !important;
+  }
+  #editorButtons {
+    margin: 0 auto;
+  }
+  #editorImage {
+    max-width: 35%;
+    margin: auto;
+  }
+  /* EDITOR BUTTONS */
+  #editorButtons {
+    text-align: center;
+    margin: 0;
+    width: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #editorButtons button {
+    text-align: center;
+  }
+  /* EDITOR IMAGE */
+  #editorImage {
+    margin-top: 1%;
+  }
+  #editorImage .img-fluid {
+    width: 608px;
+  }
+  /* FOOTER */
+  footer {
+    width: 20% !important;
+    height: 13% !important;
+  }
+}
+/*# sourceMappingURL=desktop.css.map */

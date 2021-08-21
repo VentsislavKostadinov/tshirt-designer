@@ -1,0 +1,50 @@
+@media (min-width: 992px) {
+  header {
+    height: 10vh;
+  }
+
+  .clickLogo {
+    width: 10vw !important;
+  }
+
+  #editorButtons {
+    margin: 0 auto;
+  }
+
+  #editorImage {
+    max-width: 35%;
+    margin: auto;
+  }
+
+  /* EDITOR BUTTONS */
+
+  #editorButtons {
+    text-align: center;
+    margin: 0;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+
+    button {
+      text-align: center;
+    }
+  }
+
+  /* EDITOR IMAGE */
+
+  #editorImage {
+    margin-top: 1%;
+
+    .img-fluid {
+      width: 608px;
+    }
+  }
+
+
+  /* FOOTER */
+
+  footer {
+    width: 20% !important;
+    height: 13% !important;
+  }
+}
