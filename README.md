@@ -1,6 +1,6 @@
 # tshirt-designer
 
-T-shirt online designer.
+T-shirt online designer. (Mobile version)
 
 Uploading (compressed) images and texts to t-shirt.
 Changing background color on t-shirt, rotating and deleting functionalities.
