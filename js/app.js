@@ -1,22 +1,33 @@
-/*window.onload = initialTshirtImg()
+let tShirtOrTextColor = '';
+
+let colors = `
+<ul class="list-group">
+<li class="list-group-item color-preview"  title="White" style="background-color:#ffffff;"></li>
+<li class="list-group-item color-preview"  title="Dark Heather" style="background-color:#616161;"></li>
+<li class="list-group-item color-preview" title="Gray" style="background-color:#f0f0f0;"></li>
+<li class="list-group-item color-preview" title="Charcoal" style="background-color:#5b5b5b;"></li>
+<li class="list-group-item color-preview"  title="Black" style="background-color:#222222;"></li>
+<li class="list-group-item color-preview"  title="Heather Orange" style="background-color:#fc8d74;"></li>
+<li class="list-group-item color-preview"  title="Heather Dark Chocolate" style="background-color:#432d26;"></li>
+<li class="list-group-item color-preview"  title="Salmon" style="background-color:#eead91;"></li>
+<li class="list-group-item color-preview"  title="Chesnut" style="background-color:#806355;"></li>
+<li class="list-group-item color-preview"  title="Dark Chocolate" style="background-color:#382d21;"></li>
+<li class="list-group-item color-preview"  title="Citrus Yellow" style="background-color:#faef93;"></li>
+<li class="list-group-item color-preview"  title="Avocado" style="background-color:#aeba5e;"></li>
+<li class="list-group-item color-preview"  title="Kiwi" style="background-color:#8aa140;"></li>
+<li class="list-group-item color-preview"  title="Irish Green" style="background-color:#1f6522;"></li>
+<li class="list-group-item color-preview"  title="Scrub Green" style="background-color:#13afa2;"></li>
+<li class="list-group-item color-preview"  title="Teal Ice" style="background-color:#b8d5d7;"></li>
+<li class="list-group-item color-preview"  title="Heather Sapphire" style="background-color:#15aeda;"></li>
+<li class="list-group-item color-preview"  title="Sky" style="background-color:#a5def8;"></li>
+<li class="list-group-item color-preview"  title="Antique Sapphire" style="background-color:#0f77c0;"></li>
+<li class="list-group-item color-preview" title="Heather Navy" style="background-color:#3469b7;"></li>							
+<li class="list-group-item color-preview"  title="Cherry Red" style="background-color:#c50404;"></li>
+</ul>
+`;
 
 
-  function initialTshirtImg() {
-    let img = document.querySelector(".frontImage");
-    //img.style.display = 'block';
-   // console.log(img.src);
-
-    let imgTest = new Image();
-    imgTest.src = img.src;
-    console.log(imgTest.src);
-    var c = document.getElementById("canvas");
-    var ctx = c.getContext("2d");
-      ctx.drawImage(imgTest, 150, 150);
-
-
-  } */
-
-  function clearScreen() {
+function clearScreen() {
     $('#editorButtons').hide();
     $('#editorImage').hide();
     $('footer').hide()
@@ -30,6 +41,10 @@ $("#rotate").click(function () {
 
 $('#color').click(function () {
 
+    tShirtOrTextColor = 'tShirtColor';
+    console.log(tShirtOrTextColor);
+
+
     $('#colorModal').modal('show');
 })
 
@@ -37,614 +52,658 @@ function drawColors() {
 
     let html = '';
 
-    html += `
-    <ul class="list-group">
-    <li class="list-group-item color-preview"  title="White" style="background-color:#ffffff;"></li>
-    <li class="list-group-item color-preview"  title="Dark Heather" style="background-color:#616161;"></li>
-    <li class="list-group-item color-preview" title="Gray" style="background-color:#f0f0f0;"></li>
-    <li class="list-group-item color-preview" title="Charcoal" style="background-color:#5b5b5b;"></li>
-    <li class="list-group-item color-preview"  title="Black" style="background-color:#222222;"></li>
-    <li class="list-group-item color-preview"  title="Heather Orange" style="background-color:#fc8d74;"></li>
-    <li class="list-group-item color-preview"  title="Heather Dark Chocolate" style="background-color:#432d26;"></li>
-    <li class="list-group-item color-preview"  title="Salmon" style="background-color:#eead91;"></li>
-    <li class="list-group-item color-preview"  title="Chesnut" style="background-color:#806355;"></li>
-    <li class="list-group-item color-preview"  title="Dark Chocolate" style="background-color:#382d21;"></li>
-    <li class="list-group-item color-preview"  title="Citrus Yellow" style="background-color:#faef93;"></li>
-    <li class="list-group-item color-preview"  title="Avocado" style="background-color:#aeba5e;"></li>
-    <li class="list-group-item color-preview"  title="Kiwi" style="background-color:#8aa140;"></li>
-    <li class="list-group-item color-preview"  title="Irish Green" style="background-color:#1f6522;"></li>
-    <li class="list-group-item color-preview"  title="Scrub Green" style="background-color:#13afa2;"></li>
-    <li class="list-group-item color-preview"  title="Teal Ice" style="background-color:#b8d5d7;"></li>
-    <li class="list-group-item color-preview"  title="Heather Sapphire" style="background-color:#15aeda;"></li>
-    <li class="list-group-item color-preview"  title="Sky" style="background-color:#a5def8;"></li>
-    <li class="list-group-item color-preview"  title="Antique Sapphire" style="background-color:#0f77c0;"></li>
-    <li class="list-group-item color-preview" title="Heather Navy" style="background-color:#3469b7;"></li>							
-    <li class="list-group-item color-preview"  title="Cherry Red" style="background-color:#c50404;"></li>
-  </ul>
-    `;
+    html += colors;
 
     return html;
 }
 
 $('#colorDrawer').html(drawColors())
 
-let colorPreview = document.querySelectorAll('.color-preview');
+/*let colorPreview = document.querySelectorAll('.color-preview');
 for (let i = 0; i < colorPreview.length; i++) {
 
-    colorPreview[i].addEventListener('click', () => {
+  colorPreview[i].addEventListener('click', () => {
 
-        $('#colorModal').modal('hide');
-        let appliedColor = colorPreview[i].style.backgroundColor;
-        $('#editorImage').css('background-color', appliedColor)
+    $('#colorModal').modal('hide');
+    let appliedColor = colorPreview[i].style.backgroundColor;
+    $('#editorImage').css('background-color', appliedColor)
 
-        console.log($('#editorImage').css('background-color'))
-    })
+    console.log($('#editorImage').css('background-color'))
+  })
+} */
+
+
+function update(activeAnchor) {
+    let group = activeAnchor.getParent();
+
+    let topLeft = group.get('.topLeft')[0];
+    let topRight = group.get('.topRight')[0];
+    let bottomRight = group.get('.bottomRight')[0];
+    let bottomLeft = group.get('.bottomLeft')[0];
+    let image = group.get('Image')[0];
+
+    let anchorX = activeAnchor.getX();
+    let anchorY = activeAnchor.getY();
+
+    // update anchor positions
+    switch (activeAnchor.getName()) {
+        case 'topLeft':
+            topRight.setY(anchorY);
+            bottomLeft.setX(anchorX);
+            break;
+        case 'topRight':
+            topLeft.setY(anchorY);
+            bottomRight.setX(anchorX);
+            break;
+        case 'bottomRight':
+            bottomLeft.setY(anchorY);
+            topRight.setX(anchorX);
+            break;
+        case 'bottomLeft':
+            bottomRight.setY(anchorY);
+            topLeft.setX(anchorX);
+            break;
+    }
+
+    image.position(topLeft.position());
+
+    let width = topRight.getX() - topLeft.getX();
+    let height = bottomLeft.getY() - topLeft.getY();
+    if (width && height) {
+        image.width(width);
+        image.height(height);
+    }
 }
 
-/*let canvas = document.getElementById('canvas');
-let ctx = canvas.getContext('2d');
-let img = new Image();
+function addAnchor(group, x, y, name) {
+    let stage = group.getStage();
+    let layer = group.getLayer();
 
-let Input = document.getElementById('words');
-let x = 10;
-let y = 30;
-ctx.font = "bold 20px sans-serif";
-ctx.fillStyle = "black";
-$('#words').keyup(function () {
-    ctx.fillText($("#words").val(), x, y);
+    let anchor = new Konva.Circle({
+        x: x,
+        y: y,
+        stroke: '#666',
+        fill: '#ddd',
+        strokeWidth: 2,
+        radius: 5,
+        name: name,
+        draggable: true,
+        dragOnTop: false
+    });
+
+    anchor.on('dragmove', function () {
+        update(this);
+        layer.draw();
+    });
+    anchor.on('mousedown touchstart', function () {
+        group.setDraggable(false);
+        this.moveToTop();
+    });
+    anchor.on('dragend', function () {
+        group.setDraggable(true);
+        layer.draw();
+    });
+    // add hover styling
+    anchor.on('mouseover', function () {
+        let layer = this.getLayer();
+        document.body.style.cursor = 'pointer';
+        this.setStrokeWidth(4);
+        layer.draw();
+    });
+    anchor.on('mouseout', function () {
+        let layer = this.getLayer();
+        document.body.style.cursor = 'default';
+        this.setStrokeWidth(2);
+        layer.draw();
+    });
+
+    group.add(anchor);
+}
+
+let stage = new Konva.Stage({
+    container: 'preview',
+    width: 158,
+    height: 258,
+
 });
 
-var imageLoader = document.getElementById('file-select');
-imageLoader.addEventListener('change', handleImage, false);
 
-function handleImage(e) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        // img = new Image();
-        img.onload = function () {
-            imageWidth = img.width / 6;
-
-            imageHeight = img.height / 5;
-            imageRight = imageX + imageWidth;
-            imageBottom = imageY + imageHeight;
-            draw(true, true);
-        }
-
-      
-        img.src = e.target.result;
-        //console.log(reader.result); base64
-
-    }
-    reader.readAsDataURL(e.target.files[0]);
-    
+let layer = new Konva.Layer();
+stage.add(layer);
+//stage.draw();
 
 
-    $('#addModal').modal('hide')
+let maxWidth = $('.konvajs-content').innerWidth();
+let maxHeight = $('.konvajs-content').innerHeight();
+console.log(maxWidth);
+console.log(maxHeight);
 
-}
-
-var canvasOffset = $("#canvas").offset();
-var offsetX = canvasOffset.left;
-var offsetY = canvasOffset.top;
-
-var startX;
-var startY;
-var isDown = false;
-
-var pi2 = Math.PI * 2;
-var resizerRadius = 3;
-var rr = resizerRadius * resizerRadius;
-var draggingResizer = {
-    x: 0,
-    y: 0
-};
-var imageX = 0;
-var imageY = 0;
-var imageWidth, imageHeight, imageRight, imageBottom;
-var draggingImage = false;
-var startX;
-var startY;
-
-/*var img = new Image();
-img.onload = function () {
-    imageWidth = canvas.width;
-    imageHeight = canvas.height;
-    imageRight = imageX + imageWidth;
-    imageBottom = imageY + imageHeight
-    draw(true, false);
-}
-img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png"; */
-
-
-/*function draw(withAnchors, withBorders) {
-
-    // clear the canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // draw the image
-    ctx.drawImage(img, 0, 0, img.width, img.height, imageX, imageY, imageWidth, imageHeight);
-
-    // optionally draw the draggable anchors 
-        if (withAnchors) {
-            drawDragAnchor(imageX, imageY);
-            drawDragAnchor(imageRight, imageY);
-            drawDragAnchor(imageRight, imageBottom);
-            drawDragAnchor(imageX, imageBottom);
-        }
-
-        // optionally draw the connecting anchor lines
-        if (withBorders) {
-            ctx.beginPath();
-            ctx.moveTo(imageX, imageY);
-            ctx.lineTo(imageRight, imageY);
-            ctx.lineTo(imageRight, imageBottom);
-            ctx.lineTo(imageX, imageBottom);
-            ctx.closePath();
-            ctx.stroke();
-        }
-  
-
-}
-
-function drawDragAnchor(x, y) {
-
-    ctx.beginPath();
-    ctx.arc(x, y, resizerRadius, 0, pi2, false);
-    ctx.closePath();
-    ctx.fill();
-}
-
-function anchorHitTest(x, y) {
-
-    var dx, dy;
-
-    // top-left
-    dx = x - imageX;
-    dy = y - imageY;
-    if (dx * dx + dy * dy <= rr) {
-        return (0);
-    }
-    // top-right
-    dx = x - imageRight;
-    dy = y - imageY;
-    if (dx * dx + dy * dy <= rr) {
-        return (1);
-    }
-    // bottom-right
-    dx = x - imageRight;
-    dy = y - imageBottom;
-    if (dx * dx + dy * dy <= rr) {
-        return (2);
-    }
-    // bottom-left
-    dx = x - imageX;
-    dy = y - imageBottom;
-    if (dx * dx + dy * dy <= rr) {
-        return (3);
-    }
-    return (-1);
-
-}
-
-
-function hitImage(x, y) {
-
-    return (x > imageX && x < imageX + imageWidth && y > imageY && y < imageY + imageHeight);
-
-}
-
-
-function handleMouseDown(e) {
-    startX = parseInt(e.clientX - offsetX);
-    startY = parseInt(e.clientY - offsetY);
-    draggingResizer = anchorHitTest(startX, startY);
-    draggingImage = draggingResizer < 0 && hitImage(startX, startY);
-}
-
-function handleMouseUp(e) {
-    draggingResizer = -1;
-    draggingImage = false;
-    draw(true, false);
-}
-
-function handleMouseOut(e) {
-    handleMouseUp(e);
-}
-
-function handleMouseMove(e) {
-
-
-
-
-    if (draggingResizer > -1) {
-
-        mouseX = parseInt(e.clientX - offsetX);
-        mouseY = parseInt(e.clientY - offsetY);
-
-        // resize the image
-        console.log(draggingResizer);
-        switch (draggingResizer) {
-            case 0:
-                //top-left
-                imageX = mouseX;
-                imageWidth = imageRight - mouseX;
-                imageY = mouseY;
-                imageHeight = imageBottom - mouseY;
-                break;
-            case 1:
-                //top-right
-                imageY = mouseY;
-                imageWidth = mouseX - imageX;
-                imageHeight = imageBottom - mouseY;
-                break;
-            case 2:
-                //bottom-right
-                imageWidth = mouseX - imageX;
-                imageHeight = mouseY - imageY;
-                break;
-            case 3:
-                //bottom-left
-                imageX = mouseX;
-                imageWidth = imageRight - mouseX;
-                imageHeight = mouseY - imageY;
-                break;
-        }
-
-        if (imageWidth < 25) {
-            imageWidth = 25;
-        }
-        if (imageHeight < 25) {
-            imageHeight = 25;
-        }
-
-        // set the image right and bottom
-        imageRight = imageX + imageWidth;
-        imageBottom = imageY + imageHeight;
-
-        // redraw the image with resizing anchors
-        draw(true, true);
-
-    } else if (draggingImage) {
-
-        imageClick = false;
-
-        mouseX = parseInt(e.clientX - offsetX);
-        mouseY = parseInt(e.clientY - offsetY);
-
-        // move the image by the amount of the latest drag
-        var dx = mouseX - startX;
-        var dy = mouseY - startY;
-        imageX += dx;
-        imageY += dy;
-        imageRight += dx;
-        imageBottom += dy;
-        // reset the startXY for next time
-        startX = mouseX;
-        startY = mouseY;
-
-        // redraw the image with border
-        draw(false, true);
-
-    }
-
-
-}
-
-
-$("#canvas").mousedown(function (e) {
-    handleMouseDown(e);
-});
-$("#canvas").mousemove(function (e) {
-    handleMouseMove(e);
-});
-$("#canvas").mouseup(function (e) {
-    handleMouseUp(e);
-});
-$("#canvas").mouseout(function (e) {
-    handleMouseOut(e);
-}); */
-
-
-
-/*let resetCanvas = document.getElementById('reset');
-resetCanvas.addEventListener('click', () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
+$('#addingText').click(function () {
+    tShirtOrTextColor = 'textColor';
+    console.log(tShirtOrTextColor);
+    $('#editorTextModal').modal('show')
 })
 
-const saveImg = document.getElementById('tshirt-add-to-cart');
-saveImg.addEventListener('click', () => {
+$('#drawText').click(addText)
 
-    let canvas = document.createElement('canvas');
-    let ctx = canvas.getContext('2d');
 
-    //let img = new Image();
+let textNode = new Konva.Text();
 
-    img.onload = function() {
+const MAX_WIDTH = 150;
 
-        ctx.drawImage(img, 0, 0);
+function addText() {
+    $('#editorTextModal').modal('hide')
+    stage.add(layer)
 
-    }
+    $('#addModal').modal('hide');
+    $('#textMaxLength').show()
 
-    let image = document.querySelector('.frontImage');
-    console.log(image);
-    img.src = image.src
-
-    console.log(canvas.toDataURL('image/jpeg'));
-}) */
-
-var stage = new Konva.Stage({
-    container: 'preview',
-    width: 430,
-    height: 530,
-    });
-
-// listen for the file input change event and load the image.
-$("#file-select").change(function(e){
-
-    function update(activeAnchor) {
-        var group = activeAnchor.getParent();
-    
-        var topLeft = group.get('.topLeft')[0];
-        var topRight = group.get('.topRight')[0];
-        var bottomRight = group.get('.bottomRight')[0];
-        var bottomLeft = group.get('.bottomLeft')[0];
-        var image = group.get('Image')[0];
-    
-        var anchorX = activeAnchor.getX();
-        var anchorY = activeAnchor.getY();
-    
-        // update anchor positions
-        switch (activeAnchor.getName()) {
-            case 'topLeft':
-                topRight.setY(anchorY);
-                bottomLeft.setX(anchorX);
-                break;
-            case 'topRight':
-                topLeft.setY(anchorY);
-                bottomRight.setX(anchorX);
-                break;
-            case 'bottomRight':
-                bottomLeft.setY(anchorY);
-                topRight.setX(anchorX);
-                break;
-            case 'bottomLeft':
-                bottomRight.setY(anchorY);
-                topLeft.setX(anchorX);
-                break;
-        }
-    
-        image.position(topLeft.position());
-    
-        var width = topRight.getX() - topLeft.getX();
-        var height = bottomLeft.getY() - topLeft.getY();
-        if(width && height) {
-            image.width(width);
-            image.height(height);
-        }
-    }
-    function addAnchor(group, x, y, name) {
-        var stage = group.getStage();
-        var layer = group.getLayer();
-    
-        var anchor = new Konva.Circle({
-            x: x,
-            y: y,
-            stroke: '#666',
-            fill: '#ddd',
-            strokeWidth: 2,
-            radius: 5,
-            name: name,
-            draggable: true,
-            dragOnTop: false
-        });
-    
-        anchor.on('dragmove', function() {
-            update(this);
-            layer.draw();
-        });
-        anchor.on('mousedown touchstart', function() {
-            group.setDraggable(false);
-            this.moveToTop();
-        });
-        anchor.on('dragend', function() {
-            group.setDraggable(true);
-            layer.draw();
-        });
-        // add hover styling
-        anchor.on('mouseover', function() {
-            var layer = this.getLayer();
-            document.body.style.cursor = 'pointer';
-            this.setStrokeWidth(4);
-            layer.draw();
-        });
-        anchor.on('mouseout', function() {
-            var layer = this.getLayer();
-            document.body.style.cursor = 'default';
-            this.setStrokeWidth(2);
-            layer.draw();
-        });
-    
-        group.add(anchor);
-    }
-    
-   
-    
-    var layer = new Konva.Layer();
-    stage.add(layer);
-    //stage.draw();
-    
-    
-    var selectedImg = new Konva.Image({
-        width: 170,
-        height: 90
-    });
-    
-    
-    var selectedImgPortrait = new Konva.Image({
-        width: 120,
-        height: 200
-    });
-    
-    let selectedImgSquare = new Konva.Image({
-    
-        width: 120,
-        height: 120
-    })
-    
-    //x: 115,
-    //y: 100,
-    
-    var wrapKonvaContainer = new Konva.Group({
-        x: 100,
-        y: 70,
-        draggable: true
-    });
-    
-    // x: 145,
-    // y: 90
-    
-    var wrapKonvaContainer2 = new Konva.Group({
-        x: 125,
-        y: 50,
-        draggable: true
-    });
-    
-    var wrapKonvaContainer3 = new Konva.Group({
-        x: 125,
-        y: 50,
-        draggable: true
-    });
-    
-    
-    layer.add(wrapKonvaContainer3);
-    //layer.add(wrapKonvaContainer2);
-   // layer.add(wrapKonvaContainer3);
-   // wrapKonvaContainer.add(selectedImg);
-   // wrapKonvaContainer.add(selectedImgPortrait);
-    wrapKonvaContainer3.add(selectedImgSquare);
-
-    var tr3 = new Konva.Transformer({
-        nodes: [selectedImgSquare],
+    textNode.setAttrs({
+        x: 5,
+        y: 20,
+        width: 140,
+        height: 'auto',
+        fontSize: 22,
         keepRatio: true,
+        align: 'center',
+        text: 'Type your text',
+        draggable: true,
+
+
+        dragBoundFunc: function (pos) {
+
+            console.log(stage.height());
+            let newX = pos.x < 0 ? 0 : pos.x && pos.x > 16 ? 16 : pos.x;
+            let newY = pos.y < 0 ? 0 : pos.y && pos.y > stage.height() - textNode.height() ? stage.height() - textNode.height() : pos.y
+
+            return {
+                x: newX,
+                y: newY,
+            };
+
+        },
+
+    });
+
+
+    layer.add(textNode);
+    /* SHOW FONT COLORS AFTER TEXT IS ADDED */
+
+    let tr = new Konva.Transformer({
+        nodes: [textNode],
+        keepRatio: true,
+        align: 'center',
         enabledAnchors: [
             'top-left',
             'top-right',
             'bottom-left',
             'bottom-right',
         ],
+
+        boundBoxFunc: function (oldBoundBox, newBoundBox) {
+            if (Math.abs(newBoundBox.width) > MAX_WIDTH) {
+                return oldBoundBox;
+            }
+
+            return newBoundBox;
+        },
     });
-    layer.add(tr3);
 
 
-  var url = URL.createObjectURL(e.target.files[0]);
+    textNode.on('transform', function () {
+        // reset scale, so only with is changing by transformer
+        //console.log(textNode.attrs);
 
-  console.log(url);
 
-
-
-  var imageObj1 = new Image();
-  imageObj1.onload = function() {
-
-    let imgWidth = imageObj1.width;
-    let imgHeight = imageObj1.height;
-    console.log(imgWidth);
-    console.log(imgHeight);
-
-/*    if(imgWidth > imgHeight) {
-
-        console.log('landscale');
-
-        var tr1 = new Konva.Transformer({
-            nodes: [selectedImg],
-            keepRatio: true,
-            enabledAnchors: [
-                'top-left',
-                'top-right',
-                'bottom-left',
-                'bottom-right',
-            ],
+        console.log(textNode.height());
+        textNode.setAttrs({
+            width: textNode.width() * textNode.scaleX(),
+            scaleX: 1
         });
-        layer.add(tr1);
 
-        selectedImg.image(imageObj1);
-        console.log(selectedImg);
+    });
 
-        // if portrait
-    } else if(imgWidth < imgHeight) {
 
-        console.log('portrait');
+    layer.add(tr)
 
-        var tr2 = new Konva.Transformer({
-            nodes: [selectedImgPortrait],
-            keepRatio: true,
-            enabledAnchors: [
-                'top-left',
-                'top-right',
-                'bottom-left',
-                'bottom-right',
-            ],
+    layer.on('dragstart', function (e) {
+        document.querySelector('.konvajs-content').style.border = '1px solid black';
+
+    })
+
+    layer.on('dragend', function (e) {
+        document.querySelector('.konvajs-content').style.border = 'none'
+
+    })
+
+    textNode.on('click tap', () => {
+        // hide text node and transformer:
+
+
+        textNode.hide();
+        tr.hide();
+
+        // create textarea over canvas with absolute position
+        // first we need to find position for textarea
+        // how to find it?
+
+        // at first lets find position of text node relative to the stage:
+        let textPosition = textNode.absolutePosition();
+
+        // so position of textarea will be the sum of positions above:
+        let areaPosition = {
+            x: stage.container().offsetLeft + textPosition.x,
+            y: stage.container().offsetTop + textPosition.y,
+        };
+
+        // create textarea and style it
+        let textLenght;
+        let textarea = document.createElement('textarea');
+
+        textarea.addEventListener('keyup', (e) => {
+
+            textLenght = e.target.value.length
+            console.log(textLenght);
+
+            if (textLenght > 16) {
+                textarea.style.fontSize = '16px';
+            }
+        })
+
+        //textarea.setAttribute('maxLength', 15)
+        $('#preview').append(textarea);
+
+        // apply many styles to match text on canvas as close as possible
+        // remember that text rendering on canvas and on the textarea can be different
+        // and sometimes it is hard to make it 100% the same. But we will try...
+        textarea.value = textNode.text();
+        textarea.style.position = 'absolute';
+        // textarea.style.top = areaPosition.y + 'px';
+        textarea.style.top = '70px';
+        // textarea.style.left = areaPosition.x + 'px';
+        textarea.style.left = '110px';
+        textarea.style.width = textNode.width() - textNode.padding() * 2 + 'px';
+        // textarea.style.height =
+        //   textNode.height() - textNode.padding() * 2 + 5 + 'px';
+        textarea.style.maxWidth = stage.width() * 2 + 'px';
+        textarea.style.fontSize = textNode.fontSize() + 'px';
+        textarea.style.border = 'none';
+        textarea.style.padding = '0px';
+        textarea.style.margin = '0px';
+        textarea.style.overflow = 'hidden';
+        textarea.style.background = 'none';
+        textarea.style.outline = 'none';
+        textarea.style.resize = 'none';
+        textarea.style.lineHeight = textNode.lineHeight();
+        textarea.style.fontFamily = textNode.fontFamily();
+        textarea.style.transformOrigin = 'left top';
+        textarea.style.textAlign = textNode.align();
+        textarea.style.color = textNode.fill();
+        rotation = textNode.rotation();
+        let transform = '';
+        if (rotation) {
+            transform += 'rotateZ(' + rotation + 'deg)';
+        }
+
+        let px = 0;
+        // also we need to slightly move textarea on firefox
+        // because it jumps a bit
+        let isFirefox =
+            navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+        if (isFirefox) {
+            px += 2 + Math.round(textNode.fontSize() / 20);
+        }
+        transform += 'translateY(-' + px + 'px)';
+
+        textarea.style.transform = transform;
+
+        // reset height
+        textarea.style.height = 'auto';
+        // after browsers resized it we can set actual value
+        textarea.style.height = textarea.scrollHeight + 3 + 'px';
+
+        textarea.focus();
+
+        function removeTextarea() {
+            textarea.parentNode.removeChild(textarea);
+            window.removeEventListener('click', handleOutsideClick);
+            textNode.show();
+            tr.show();
+            //tr.forceUpdate();
+        }
+
+        function setTextareaWidth(newWidth) {
+            if (!newWidth) {
+                // set width for placeholder
+                newWidth = textNode.placeholder.length * textNode.fontSize();
+                console.log(newWidth);
+            }
+            // some extra fixes on different browsers
+            let isSafari = /^((?!chrome|android).)*safari/i.test(
+                navigator.userAgent
+            );
+            let isFirefox =
+                navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+            if (isSafari || isFirefox) {
+                newWidth = Math.ceil(newWidth);
+            }
+
+            let isEdge =
+                document.documentMode || /Edge/.test(navigator.userAgent);
+            if (isEdge) {
+                newWidth += 1;
+            }
+            textarea.style.width = newWidth + 'px';
+        }
+
+        textarea.addEventListener('keydown', function (e) {
+            // hide on enter
+            // but don't hide on shift + enter
+            if (e.keyCode === 13 && !e.shiftKey) {
+                textNode.text(textarea.value);
+                removeTextarea();
+            }
+            // on esc do not set value back to node
+            if (e.keyCode === 27) {
+                removeTextarea();
+            }
         });
-        layer.add(tr2);
-        selectedImgPortrait.image(imageObj1)
-   
+
+        textarea.addEventListener('keydown', function (e) {
+            scale = textNode.getAbsoluteScale().x;
+            setTextareaWidth(textNode.width() * scale);
+            textarea.style.height = 'auto';
+            textarea.style.height =
+                textarea.scrollHeight + textNode.fontSize() + 'px';
+
+            if (textLenght > 16) {
+
+                console.log('pass');
+                //textarea.style.fontSize = '16px';
+                textNode.fontSize(16);
+            } else {
+                console.log(textNode.fontSize());
+            }
+
+
+        });
+
+        function handleOutsideClick(e) {
+            if (e.target !== textarea) {
+                textNode.text(textarea.value);
+                removeTextarea();
+            }
+        }
+
+        setTimeout(() => {
+            window.addEventListener('click', handleOutsideClick);
+        });
+    });
+}
+
+$('#fontColorPickerWrap h2').show();
+$('#fontColorPicker').html(colors)
+
+let chooseColor = document.querySelectorAll('.color-preview');
+
+for (let i = 0; i < chooseColor.length; i++) {
+
+    chooseColor[i].addEventListener('click', () => {
+        console.log('click');
+
+        if (tShirtOrTextColor === 'tShirtColor') {
+            console.log(tShirtOrTextColor);
+
+            $('#colorModal').modal('hide');
+            let appliedColor = chooseColor[i].style.backgroundColor;
+            $('#editorImage').css('background-color', appliedColor)
+
+            console.log($('#editorImage').css('background-color'))
+
+        }
+
+        if (tShirtOrTextColor === 'textColor') {
+            console.log(tShirtOrTextColor);
+
+            let appliedColor = chooseColor[i].style.backgroundColor;
+            console.log(appliedColor);
+
+
+            textNode.setAttrs({
+                fill: appliedColor,
+
+            })
+            $('#editorTextModal').modal('hide');
+
+        }
+
+    })
+}
+
+/* FONT STYLE */
+
+
+$('#chooseFontStyle').on('change', function () {
+
+    let chosenFontStyle = $(this).val();
+
+    if (chosenFontStyle === 'bold') {
+
+        textNode.setAttrs({
+
+            fontStyle: chosenFontStyle,
+            fontSize: 21
+        });
     } else {
-               console.log('square');
-        var tr3 = new Konva.Transformer({
-            nodes: [selectedImgSquare],
-            keepRatio: true,
-            enabledAnchors: [
-                'top-left',
-                'top-right',
-                'bottom-left',
-                'bottom-right',
-            ],
+        textNode.setAttrs({
+
+            fontStyle: chosenFontStyle
         });
-        layer.add(tr3);
-        selectedImgSquare.image(imageObj1);
-    } */
+    }
 
-    //  console.log(selectedImg); // obj with image data
-    selectedImgSquare.image(imageObj1);
-      layer.draw();
-      $('#addModal').modal('hide');
 
-  };
-  imageObj1.src = url;
+    $('#editorTextModal').modal('hide');
+})
 
-/*var URL = window.webkitURL || window.URL;
-var url = URL.createObjectURL(e.target.files[0]);
-var img = new Image();
-img.src = url;
+/* FONT FAMILY */
 
-img.onload = function() {
+$('#chooseFontFamily').on('change', function () {
 
-  var img_width = img.width;
-  var img_height = img.height;
+    let chosenFontFamily = $(this).val();
 
-  // calculate dimensions to get max 300px
-  var max = 300;
-  var ratio = (img_width > img_height ? (img_width / max) : (img_height / max))
+    console.log(chosenFontFamily);
 
-  // now load the Konva image
-  var theImg = new Konva.Image({
-    image: img,
-    x: 50,
-    y: 30,
-    width: img_width/ratio,
-    height: img_height/ratio,
-    draggable: true
+    textNode.setAttrs({
 
-  });
+        fontFamily: chosenFontFamily
+    });
 
-  layer.add(theImg);
-  layer.draw();
-} */
+    $('#editorTextModal').modal('hide');
+})
 
+// listen for the file input change event and load the image.
+$("#file-select").change(function (e) {
+    let spinner = document.querySelector('.spinner-grow');
+    let container = document.querySelector('.container-fluid');
+
+    spinner.style.display = 'block';
+    container.style.display = 'none';
+    clearCanvas();
+
+
+    let originalImage = e.target.files[0];
+    console.log(originalImage)
+
+        spinner.style.display = 'block';
+        document.querySelector('.container-fluid').style.display = 'none'
+
+
+    let originalTotalSize = (originalImage.size / 1048576 ).toFixed(3);
+    originalTotalSize = Number(originalTotalSize);
+    console.log('original total size ', originalTotalSize + 'MB');
+
+
+        //spinner.style.display = 'block';
+        //document.querySelector('.container-fluid').style.display = 'none'
+
+    imageConversion.compress(originalImage, 0.2).then(res => {
+        console.log('compressed size ', res);
+
+        let getOriginalImageSize = res.size;
+        console.log(getOriginalImageSize);
+        let totalSizeInKB = (getOriginalImageSize / (1024 * 1024)).toFixed(3);
+        totalSizeInKB = Number(totalSizeInKB);
+        console.log('compressed size ', totalSizeInKB + 'KB')
+
+        let url = URL.createObjectURL(res);
+
+        let imageObj1 = new Image();
+        imageObj1.onload = function () {
+            stage.add(layer)
+            //console.log(imageObj1.width);
+            //console.log(imageObj1.height);
+
+            // create an image
+            let selectedImg = new Konva.Image({
+                width: 158,
+                draggable: true,
+                scaleX: 1,
+                scaleY: 1,
+                dragBoundFunc: function (pos) {
+
+                    let newX = pos.x < 0 ? 0 : pos.x && pos.x > stage.width() - tr1.width() ? stage.width() - tr1.width() : pos.x;
+                    let newY = pos.y < 0 ? 0 : pos.y && pos.y > stage.height() - tr1.height() ? stage.height() - tr1.height() : pos.y
+
+                    return {
+                        x: newX,
+                        y: newY,
+                    };
+                },
+            });
+            let canvasContent = document.querySelector('.konvajs-content');
+
+            selectedImg.on('dragstart', function (e) {
+                canvasContent.style.border = '1px solid black';
+
+            })
+
+            selectedImg.on('dragend', function (e) {
+                canvasContent.style.border = 'none'
+            })
+
+            // landscape
+            if (imageObj1.width > imageObj1.height) {
+
+                console.log('landscape');
+                selectedImg.setAttrs({
+
+                    // width: 180,
+                    // height: 120
+                    width: 140,
+                    height: 90
+                })
+            }
+
+            // portrait
+            if (imageObj1.width < imageObj1.height) {
+
+                console.log('portrait');
+                selectedImg.setAttrs({
+
+                    //width: 120,
+                    //height: 180
+                    width: 90,
+                    height: 140
+                })
+
+            }
+
+            // square
+            if (imageObj1.width === imageObj1.height) {
+
+                console.log('square');
+
+                selectedImg.setAttrs({
+
+                    width: 100,
+                    height: 100
+                })
+            }
+
+
+            // create image container
+            let wrapCanvasContainer = new Konva.Group({
+
+                x: 10,
+                y: 10,
+
+                //x: 40,
+                //  y: 50,
+
+                draggable: true,
+            });
+
+            layer.add(wrapCanvasContainer);
+            wrapCanvasContainer.add(selectedImg);
+
+
+            selectedImg.on('transform', function () {
+                console.log(selectedImg.attrs)
+            })
+
+
+            let tr1 = new Konva.Transformer({
+                nodes: [selectedImg],
+                keepRatio: true,
+                enabledAnchors: [
+                    'top-left',
+                    'top-right',
+                    'bottom-left',
+                    'bottom-right',
+                ],
+                boundBoxFunc: function (oldBoundBox, newBoundBox) {
+                    if (Math.abs(newBoundBox.width) > MAX_WIDTH) {
+                        return oldBoundBox;
+                    }
+
+                    return newBoundBox;
+                },
+            });
+
+            layer.add(tr1);
+            
+
+            selectedImg.image(imageObj1);
+            layer.draw();
+            $('#addModal').modal('hide');
+
+            spinner.style.display = 'none';
+            document.querySelector('.container-fluid').style.display = 'block'
+        };
+
+      imageObj1.src = url;
+      spinner.style.display = 'none';
+      container.style.display = 'block';
+
+        //const file = new File([url], 'untitled')
+
+        // end file select
+    }) // end compressing
 });
 
-$('#delete').on('click', function() {
 
-    stage.destroy()
- 
-    
+$('#delete').on('click', clearCanvas)
+
+function clearCanvas() {
+
+    // remove text, no destroy it if reuse
+    layer.destroy();
+
+}
+
+
+$('#tshirt-add-to-cart').on('click', function () {
+
+    let dataURL = stage.toDataURL();
+    console.log(dataURL);
 })
