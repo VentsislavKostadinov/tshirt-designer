@@ -1,0 +1,196 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: #efefef;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  background-color: #fff;
+  width: 100vw;
+  padding-bottom: 7px;
+}
+header .logo {
+  padding: 2px 0 0 0.5vw;
+  width: 50%;
+}
+header .exit {
+  padding: 2px 0.7vw 0 0;
+  width: 50%;
+  justify-content: flex-end;
+  display: flex;
+}
+header .clickLogo {
+  width: 40vw;
+  height: auto;
+  cursor: pointer;
+}
+header .exitCross {
+  padding: 0 0 0 0.25vw;
+  height: 20px;
+  width: auto;
+  cursor: pointer;
+}
+header .exitText {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* EDITOR BUTTONS */
+#editorButtons {
+  background-color: #474747 !important;
+  display: flex;
+  max-width: 90%;
+  margin: 10% auto auto auto;
+  font-size: 2em;
+}
+#editorButtons .btn-primary {
+  background-color: #474747 !important;
+  border: 1px solid #474747;
+  font-size: 1em;
+}
+
+/* EDITOR IMAGE */
+#editorImage {
+  margin-top: 10%;
+  padding: 0;
+  position: relative;
+}
+#editorImage #preview {
+  position: absolute;
+  top: 3%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+#editorImage #preview .konvajs-content {
+  margin: auto;
+  margin-top: 45px;
+  max-width: 100%;
+}
+#editorImage .fa-plus-square {
+  font-size: 40px;
+  position: absolute;
+  top: 24%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+/* EDITOR TEXT */
+#editorTextModal #editorTextDrawer .btn-primary {
+  background-color: #474747;
+  border: 1px solid #474747;
+}
+
+.modal-open {
+  padding-right: 0 !important;
+}
+
+input[type=file] {
+  display: none;
+}
+
+/* ADDING POP-UP */
+#addModal .modal-body .uploadFromFacebook {
+  margin-top: 15px;
+}
+#addModal .modal-body #uploadFromPC p {
+  margin: auto;
+}
+#addModal .modal-body label,
+#addModal .modal-body div {
+  width: 100%;
+  background-color: #474747;
+  color: #ffffff;
+  cursor: pointer;
+}
+#addModal .modal-body label p,
+#addModal .modal-body div p {
+  padding: 10px;
+}
+
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  /* height: 54px;
+  position: fixed;
+  right: 0;
+  bottom: -4%;
+  width: 100%;
+  z-index: 1030;
+  text-align: center;
+  background-color: $white-colour;
+  display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+footer button {
+  font-size: 1.5em;
+  margin-top: -30px;
+}
+footer #upload-button {
+  background-color: #474747;
+  border: 1px solid #474747;
+  color: #ffffff;
+}
+footer #tshirt-add-to-cart {
+  background-color: #f15922;
+  border: 1px solid #f15922;
+  color: #ffffff;
+}
+
+/* COLOR PICKERS */
+.list-group {
+  display: inline-block;
+  text-align: center;
+}
+.list-group .color-preview, .list-group .text-color-preview {
+  display: inline-block;
+  margin: 2px;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  #editorButtons {
+    margin-top: 2%;
+  }
+}
+@media (max-width: 991px) {
+  #editorImage {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3%;
+  }
+}
+/* ADDING TEXT */
+#addTextModal .modal-dialog {
+  margin-top: 360px;
+}
+
+/* CONSTRAINT TEXT */
+#textMaxLength {
+  text-align: center;
+}
+#textMaxLength span {
+  color: red;
+}
+
+/* SPINNER */
+.spinner-grow {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 9999;
+}
+
+/*# sourceMappingURL=style.css.map */
